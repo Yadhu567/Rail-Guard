@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>STATION MASTER LOGIN</h1>
+        {% if message %}
+        <script>
+            alert('{{ message }}');
+        </script>
+        {% endif %}
+        <form action="/postsignIn/" method="post">
+            {% csrf_token %}
+            <label for="Email">Email</label>
+            <input type="email" placeholder="Type your username" id="Email" name="email" required>
+
+            <label for="Password">Password</label>
+            <input type="password" placeholder="Type your password" id="Password" name="pass" pattern=".{6,}" title="Password must be at least 6 characters" required>
+            <input type="submit" value="Log In">
+
+            <p class="forgot-password">
+                Forgot Password? <a href="/reset/">Click Here to Reset</a>
+            </p>
+
+            <label>
+                <input type="checkbox" checked="checked" name="remember">
+                <span class="checkbox-label">Remember me</span>
+            </label>
+        </form>
+    </div>
+</body>
+</html>
